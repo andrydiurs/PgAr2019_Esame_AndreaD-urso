@@ -70,7 +70,7 @@
             <description>
                 Hai attraversato il fiume: ci sono una strada e un bosco in fiamme.
             </description>
-            <option destination="7" lifepoints="1">
+            <option destination="4" lifepoints="1">
                 Segui la strada.
             </option>
             <option destination="7" lifepoints="-100">

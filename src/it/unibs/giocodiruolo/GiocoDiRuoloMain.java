@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class GiocoDiRuoloMain {
 
 	private static final String INIZIO = "Sei all'inizio, preparati a partire, la tua prima destinazione sarà la pianura";
-	private static final String PIANURA = "Sei arrivato in una zona tranquilla e pianeggiante. Dove Vuoi andare ? Mare[1] o Montagna[2]";
-	private static final String MARE = "Sei arrivati in una splendida spiaggia. Voi prendere una nave e salpare[1] o voi esplorare le montagne [2]?";
+	private static final String PIANURA = "Sei arrivato in una zona tranquilla e pianeggiante. Dove Vuoi andare ? Montagna[1] o Mare[2]";
+	private static final String MARE = "Sei arrivati in una splendida spiaggia. Voi prendere una nave e salpare[1], voi esplorare le montagne [2] oppure la pianura [3]?";
 	private static final String FINE = "Congratulazioni, il tuo viaggio è terminato";
 	private static final String MONTAGNA = "Arrivare fin quassù è stato faticoso. Vedi il paesaggio sotto di te. Dove vuoi andare ? Pianura[1] o Mare[2]";	
 	
@@ -21,16 +21,16 @@ public class GiocoDiRuoloMain {
 		collegamentiC1.add(2);
 		
 		ArrayList<Integer> collegamentiC2 = new ArrayList<Integer>();
-		collegamentiC1.add(1);
-		collegamentiC1.add(3);
-		collegamentiC1.add(4);
+		collegamentiC2.add(1);
+		collegamentiC2.add(3);
+		collegamentiC2.add(4);
 		
 		ArrayList<Integer> collegamentiC3 = new ArrayList<Integer>();
 		collegamentiC3.add(2);
 		
 		ArrayList<Integer> collegamentiC4 = new ArrayList<Integer>();
-		collegamentiC1.add(1);
-		collegamentiC1.add(2);
+		collegamentiC4.add(1);
+		collegamentiC4.add(2);
 		
 		Casella c0 = new Casella(INIZIO, 0, collegamentiC0);
 		Casella c1 = new Casella(PIANURA, 1, collegamentiC1);
@@ -55,7 +55,11 @@ public class GiocoDiRuoloMain {
 		System.out.println("scelta = "+scelta);
 		System.out.println("Hai una vita di "+personaggio.getVita());
 		*/
-		//Partita.menuPartita(Mappa.creaMappa(listaCaselle), personaggio);
+		Partita.menuPartita(listaCaselle, personaggio);
+		
+		ArrayList<Casella> listaCaselle2 = new ArrayList<Casella>();
+		listaCaselle2 = Partita.leggiXML();
+		//System.out.println(listaCaselle2);
 		
 	}
 

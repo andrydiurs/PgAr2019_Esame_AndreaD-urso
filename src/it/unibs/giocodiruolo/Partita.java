@@ -11,6 +11,7 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamReader;
 
 
+
 public class Partita {
 	
 	private static final String OPZIONI = "Digita l'opzione che preferisci\n\t[1] scelta numero 1\n\t[2] Scelta numero 2\n";
@@ -103,42 +104,37 @@ public class Partita {
 	}
 	
 	
-	/*
+	
 	public static void menuPartita (ArrayList<Casella> listaCaselle, Giocatore g1 ) {
-		int scelta;
+		int scelta=0;
 		int posizione=0;
 		int link;
+		int numLink;
 		
 		System.out.println(listaCaselle.get(0).getDescrizione());
 		System.out.println(listaCaselle.get(1).getDescrizione());
-		link = listaCaselle.get(1).getCollegamenti().get(0);
-		System.out.println("link = "+link);
 		
 		do {
-			scelta = leggiScelta();
-			
-			
-			
-			switch (scelta) {
-			case 1:
-				link = listaCaselle.get(link).getCollegamenti().get(0);
-				System.out.println(listaCaselle.get(link).getDescrizione());
-				posizione = listaCaselle.get(link).getId();
-				break;
-			case 2:
-				link = listaCaselle.get(link).getCollegamenti().get(1);
-				System.out.println(listaCaselle.get(link).getDescrizione());
-				posizione = listaCaselle.get(link).getId();
-				break;
-			default:
-				break;
+			numLink = listaCaselle.get(1).getCollegamenti().size();
+			if (numLink==2) {
+				scelta = menuScelte();
+			}else if (numLink==3) {
+				scelta = menuScelte3();
 			}
-			
-			
-			
-		}while(posizione!=3);
+			if (scelta == 1) {
+				posizione = 4;
+				System.out.println(listaCaselle.get(posizione).getDescrizione());
+			}else if(scelta == 2) {
+				posizione = 1;
+				System.out.println(listaCaselle.get(posizione).getDescrizione());
+			}else if(scelta == 3) {
+				posizione = 3;
+				System.out.println(listaCaselle.get(posizione).getDescrizione());
+			}
+		}while(true);
+		
 	}// fine menuPartita
-	*/
+	
 	
 	public static ArrayList<Casella> leggiXML () {
 		ArrayList<Casella> listaCaselle = new ArrayList<Casella>();
@@ -152,64 +148,47 @@ public class Partita {
 			 while (xmlr.hasNext()) { // continua a leggere finché ha eventi a disposizione 
 				 switch (xmlr.getEventType()) { // switch sul tipo di evento
 				 
-				 case XMLStreamConstants.START_DOCUMENT: // inizio del documento: stampa che inizia il documento 
-					 //System.out.println("Start Read Doc " + mappa); 
+				 case XMLStreamConstants.START_DOCUMENT:
 					 break;
 			     
-				 case XMLStreamConstants.START_ELEMENT: // inizio di un elemento: stampa il nome del tag e i suoi attributi 
-			    	 //System.out.println("Tag " + xmlr.getLocalName());
-			    	 if (xmlr.getLocalName().equals("city")) {
-			    		 Citta nuovaCitta = new Citta();
-			    		 listaCitta.add(nuovaCitta);
-			    		 //System.out.println("nuova citta creata");
-			    		 j++;
+				 case XMLStreamConstants.START_ELEMENT: 
+			    	 if (xmlr.getLocalName().equals("cell")) {
+			    		 Casella nuovaCasella = new Casella();
+			    		 listaCaselle.add(nuovaCasella);
+			    		 k++;
 			    	 }
 			         for (int i = 0; i < xmlr.getAttributeCount(); i++) {
-			        	 //System.out.printf(" => attributo %s->%s%n", xmlr.getAttributeLocalName(i), xmlr.getAttributeValue(i));
 			        	 switch (xmlr.getAttributeLocalName(i)) {
 							case "id":
 								int idInt = Integer.parseInt(xmlr.getAttributeValue(i));
-								listaCitta.get(j-1).setId(idInt);
-								//System.out.println("id aggiunto");
+								listaCaselle.get(k-1).setId(idInt);
 								break;
 	
-							case "name":
-								listaCitta.get(j-1).setNome(xmlr.getAttributeValue(i));
+							case "type":
+								listaCaselle.get(k-1).setType(xmlr.getAttributeValue(i));
 								break;
-							case "x":
-								int xInt = Integer.parseInt(xmlr.getAttributeValue(i));
-								listaCitta.get(j-1).setX(xInt);
+							case "description":
+								listaCaselle.get(k-1).setDescrizione(xmlr.getAttributeLocalName(i));
 								break;
-							case "y":
-								int yInt = Integer.parseInt(xmlr.getAttributeValue(i));
-								listaCitta.get(j-1).setY(yInt);
-								break;
-							case "h":
-								int zInt = Integer.parseInt(xmlr.getAttributeValue(i));
-								listaCitta.get(j-1).setZ(zInt);
-								break;
-		
 							default:
 								break;
 						}
-			        	 if (xmlr.getLocalName().equals("link")) {
-				    		 listaCitta.get(j-1).setCollegamenti(Integer.parseInt(xmlr.getAttributeValue(i)));
+			        	 
+			        	 if (xmlr.getLocalName().equals("description")) {
+				    		 listaCaselle.get(k-1).setDescrizione(xmlr.getElementText());
 				    	 }
+			        	 
 			         }
-			         
 			         break;
 			     
-				 case XMLStreamConstants.END_ELEMENT: // fine di un elemento: stampa il nome del tag chiuso 
-			    	 //System.out.println("END-Tag " + xmlr.getLocalName()); 
+				 case XMLStreamConstants.END_ELEMENT:
 			    	 break;
 			     
 				 case XMLStreamConstants.COMMENT:
-			         //System.out.println("// commento " + xmlr.getText()); 
-			         break; // commento: ne stampa il contenuto
+			         break; 
 			     
 				 case XMLStreamConstants.CHARACTERS: // content all’interno di un elemento: stampa il testo 
 			    	 if (xmlr.getText().trim().length() > 0) // controlla se il testo non contiene solo spazi
-			         //System.out.println("-> " + xmlr.getText()); 
 			    	 break;
 			    	 }
 			    
