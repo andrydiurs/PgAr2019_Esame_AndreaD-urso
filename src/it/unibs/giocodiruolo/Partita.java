@@ -123,14 +123,13 @@ public class Partita {
 			}
 			if (scelta == 1) {
 				posizione = 4;
-				System.out.println(listaCaselle.get(posizione).getDescrizione());
 			}else if(scelta == 2) {
-				posizione = 1;
-				System.out.println(listaCaselle.get(posizione).getDescrizione());
-			}else if(scelta == 3) {
-				posizione = 3;
-				System.out.println(listaCaselle.get(posizione).getDescrizione());
+				posizione = 2;
 			}
+			System.out.println(listaCaselle.get(posizione).getDescrizione());
+			
+			
+			
 		}while(true);
 		
 	}// fine menuPartita
