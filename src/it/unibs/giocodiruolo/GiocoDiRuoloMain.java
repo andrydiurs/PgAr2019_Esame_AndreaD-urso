@@ -3,8 +3,9 @@ package it.unibs.giocodiruolo;
 public class GiocoDiRuoloMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		int scelta;
+		scelta = Partita.menuScelte();
+		System.out.println("scelta = "+scelta);
 	}
 
 }
