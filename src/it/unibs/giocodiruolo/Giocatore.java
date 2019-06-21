@@ -11,4 +11,8 @@ public class Giocatore {
 		return vita;
 	}
 	
+	public void setVita (int vita) {
+		this.vita = vita;
+	}
+	
 }
