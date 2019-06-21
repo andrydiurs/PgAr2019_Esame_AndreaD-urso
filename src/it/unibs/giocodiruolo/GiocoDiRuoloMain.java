@@ -55,11 +55,11 @@ public class GiocoDiRuoloMain {
 		System.out.println("scelta = "+scelta);
 		System.out.println("Hai una vita di "+personaggio.getVita());
 		*/
-		Partita.menuPartita(listaCaselle, personaggio);
+		//Partita.menuPartita(listaCaselle, personaggio);
 		
 		ArrayList<Casella> listaCaselle2 = new ArrayList<Casella>();
 		listaCaselle2 = Partita.leggiXML();
-		//System.out.println(listaCaselle2);
+		System.out.println(listaCaselle2);
 		
 	}
 

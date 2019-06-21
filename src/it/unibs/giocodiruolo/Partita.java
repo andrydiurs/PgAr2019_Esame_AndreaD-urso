@@ -166,18 +166,19 @@ public class Partita {
 							case "type":
 								listaCaselle.get(k-1).setType(xmlr.getAttributeValue(i));
 								break;
-							case "description":
-								listaCaselle.get(k-1).setDescrizione(xmlr.getAttributeLocalName(i));
-								break;
 							default:
 								break;
 						}
 			        	 
+			        	 /*
 			        	 if (xmlr.getLocalName().equals("description")) {
 				    		 listaCaselle.get(k-1).setDescrizione(xmlr.getElementText());
 				    	 }
-			        	 
+			        	 */
 			         }
+			         if (xmlr.getLocalName().equals("description")) {
+			    		 listaCaselle.get(k-1).setDescrizione(xmlr.getElementText());
+			    	 }
 			         break;
 			     
 				 case XMLStreamConstants.END_ELEMENT:
